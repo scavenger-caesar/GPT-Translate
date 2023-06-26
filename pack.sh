@@ -1,0 +1,1 @@
+pyinstaller -F main.py -p gpt_translate.py -p Ui_translate.py --hidden-import gpt_translate --hidden-import Ui_translate --hidden-import charset_normalizer.md__mypyc
