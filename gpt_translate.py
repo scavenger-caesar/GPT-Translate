@@ -21,6 +21,12 @@ class Setting(object):
         with open(self.__config_file, 'w') as config_file:
             self.__config.write(config_file)
 
+    def get_config_proxy(self) -> str:
+        return self.__config.get('option', 'openai-proxy')
+    
+    def set_config_proxy(self, proxy:str) -> str:
+        self.__config.set('option', 'openai-proxy', proxy)
+
     def get_config_gpt_model(self) -> str:
         return self.__config.get('option', 'GPT-Model')
     

@@ -19,6 +19,7 @@ class Translate_window(QMainWindow, Ui_MainWindow, Translate):
         self.setupUi(self)
         self.setWindowTitle("GPT Translate")
         self.application_translate_init()
+        # openai.api_base = "https://api.openai-proxy.com/v1"
         
         # 绑定事件
         # 翻译语言交换
@@ -55,9 +56,20 @@ class Translate_window(QMainWindow, Ui_MainWindow, Translate):
         else:
             print("init gpt model error.")
         
-        # 填充api-key进设置选项
+        # 初始化api-key
         self.api_key_lineEdit.setText(self.setting.get_config_apikey())
         openai.api_key = self.setting.get_config_apikey()
+
+        # 初始化代理
+        api_proxy = self.setting.get_config_proxy()
+        if len(api_proxy) == 0:
+            self.centralwidget.setStatusTip(f"未检测到OpenAI API 代理, 当前使用api地址为: {openai.api_base}")
+            self.api_proxy_lineEdit.setText("")
+        else:
+            self.api_proxy_lineEdit.setText(api_proxy)
+            api_proxy = api_proxy + "/v1"
+            openai.api_base = api_proxy
+            self.centralwidget.setStatusTip(f"正在使用OpenAI API 代理, 代理地址为: {openai.api_base}")
 
     def api_key_show(self):
         echo_mode = self.api_key_lineEdit.echoMode()
@@ -76,6 +88,7 @@ class Translate_window(QMainWindow, Ui_MainWindow, Translate):
     def setting_confirm(self):
         self.setting.set_config_gpt_model(self.gpt_model_comboBox.currentText())
         self.setting.set_config_apikey(self.api_key_lineEdit.text())
+        self.setting.set_config_proxy(self.api_proxy_lineEdit.text())
         self.setting.write_config()
         self.switch_to_translate_page()
     
