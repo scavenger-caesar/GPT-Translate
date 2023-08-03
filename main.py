@@ -13,6 +13,7 @@ LANGUAGE_DICT = {
 }
 
 class Translate_thread(QThread, Translate):
+    """多线程翻译，解决翻译时窗口卡死"""
     translate_signal = pyqtSignal(str)
 
     def __init__(self):
@@ -95,6 +96,7 @@ class Translate_window(QMainWindow, Ui_MainWindow):
             self.centralwidget.setStatusTip(f"正在使用OpenAI API 代理, 代理地址为: {openai.api_base}")
 
     def api_key_show(self):
+        """设置里api-key是否明文显示"""
         echo_mode = self.api_key_lineEdit.echoMode()
         if echo_mode == self.api_key_lineEdit.EchoMode.Normal:
             self.api_key_lineEdit.setEchoMode(self.api_key_lineEdit.EchoMode.Password)
@@ -102,9 +104,11 @@ class Translate_window(QMainWindow, Ui_MainWindow):
             self.api_key_lineEdit.setEchoMode(self.api_key_lineEdit.EchoMode.Normal)
     
     def clear_original_text(self):
+        """清除原文窗口内容"""
         self.original_text.clear()
     
     def start_translate(self):
+        """用gpt接口翻译原文内容"""
         self.translate_thread.translate_init(self.api_key, self.original_text.toPlainText(),
                                   self.target_language, self.gpt_model)
         self.translate_thread.start()
@@ -113,12 +117,14 @@ class Translate_window(QMainWindow, Ui_MainWindow):
         self.original_text.setReadOnly(True)
 
     def display_translate(self, text):
+        """在翻译结果窗口显示内容"""
         self.target_text.setPlainText(text)
         self.original_text.setToolTip("Ctrl+T可以快捷翻译")
         # 翻译完成后取消用户写入限制
         self.original_text.setReadOnly(False)
 
     def setting_confirm(self):
+        """生效设置里的内容"""
         self.setting.set_config_gpt_model(self.gpt_model_comboBox.currentText())
         self.setting.set_config_apikey(self.api_key_lineEdit.text())
         self.setting.set_config_proxy(self.api_proxy_lineEdit.text())
@@ -126,14 +132,17 @@ class Translate_window(QMainWindow, Ui_MainWindow):
         self.switch_to_translate_page()
     
     def switch_to_setting_page(self):
+        """切换到设置页"""
         self.application_translate_init()
         self.stackedWidget.setCurrentWidget(self.setting_page)
 
     def switch_to_translate_page(self):
+        """切换到翻译页"""
         self.application_translate_init()
         self.stackedWidget.setCurrentWidget(self.translate_page)
 
     def swap_translate_language(self):
+        """交换原语言和目标语言"""
         # temp_index = self.native_language_comboBox.findText(self.target_language_comboBox.currentText())
         # self.target_language_comboBox.setCurrentIndex(
         #     self.target_language_comboBox.findText(

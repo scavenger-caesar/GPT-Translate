@@ -3,6 +3,9 @@ import openai
 import sys
 import configparser
 import os
+import pyperclip
+import time
+import threading
 
 class Setting(object):
     def __init__(self) -> None:
@@ -52,6 +55,16 @@ class Translate(object):
         openai.api_key = self.setting.get_config_apikey()
 
     def translate_text(self, text:str, target_language:str, gpt_model:str) -> str:
+        """翻译成目标语言
+
+        Args:
+            text (str): 需要翻译的内容 
+            target_language (str): 目标语言 
+            gpt_model (str): gpt的模型
+
+        Returns:
+            str: 翻译结果
+        """        
         try:
             self.completion = openai.ChatCompletion.create(
                 model = f"{gpt_model}",
@@ -79,16 +92,31 @@ class Translate(object):
         # translated_text = f"text: {text}\ntarget_language: {target_language}\ngpt_model: {gpt_model}"
         return translated_text
     
-if __name__ == '__main__':
+    def translate_clipboard_content(self, target_language:str, gpt_model:str) -> str:
+        """翻译粘贴板内容"""
+        return self.translate_text(pyperclip.paste(), target_language, gpt_model)
+    
+    def monitor_clipboard_to_translate(self, target_language:str):
+        gpt_mode = self.setting.get_config_gpt_model()
+
+        last_content = pyperclip.paste()
+        while True:
+            if last_content != pyperclip.paste():
+                translate_result = self.translate_clipboard_content(target_language, gpt_mode)
+                print(f"原文:{ pyperclip.paste() }")
+                print(f"译文:{ translate_result }\n")
+                pyperclip.copy(translate_result)
+                last_content = pyperclip.paste()
+
+            time.sleep(1) # 每秒检查一下粘贴板是否有更新           
+                
+    
+def clipboard_translate():
     translate = Translate()
-    setting = Setting()
-    key = setting.get_config_apikey()
-    print(f'{key}')
-    setting.set_config_apikey('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')
-    key = setting.get_config_apikey()
-    print(f'{key}')
+    threadobj = threading.Thread(target=translate.monitor_clipboard_to_translate, args=["Chinese"])
+    threadobj.start()
+    while True:
+        pass
 
-    language = setting.get_config_language()
-    print(f'{language}')
-    setting.set_config_language("English")
-
+if __name__ == '__main__':
+    clipboard_translate()
