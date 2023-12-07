@@ -15,323 +15,341 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
+    <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="translate_page">
-       <widget class="QLabel" name="title_label">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>20</y>
-          <width>130</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="text">
-         <string>GPT-Translate</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="target_language_comboBox">
-        <property name="geometry">
-         <rect>
-          <x>420</x>
-          <y>20</y>
-          <width>120</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>120</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string>目标语言</string>
-        </property>
-        <property name="statusTip">
-         <string>目标语言</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>中文</string>
-         </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="title_label">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="text">
+               <string>GPT-Translate</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QComboBox" name="native_language_comboBox">
+              <property name="minimumSize">
+               <size>
+                <width>80</width>
+                <height>0</height>
+               </size>
+              </property>
+              <item>
+               <property name="text">
+                <string>English</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>中文</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>30</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="swap_button">
+              <property name="toolTip">
+               <string>交换翻译语言</string>
+              </property>
+              <property name="statusTip">
+               <string>交换翻译语言</string>
+              </property>
+              <property name="text">
+               <string>&lt;----&gt;</string>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>30</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QComboBox" name="target_language_comboBox">
+              <property name="minimumSize">
+               <size>
+                <width>120</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="toolTip">
+               <string>目标语言</string>
+              </property>
+              <property name="statusTip">
+               <string>目标语言</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>中文</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>English</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTextBrowser" name="original_text">
+            <property name="toolTip">
+             <string>Ctrl+T可以快捷翻译</string>
+            </property>
+            <property name="statusTip">
+             <string>Ctrl+T可以快捷翻译</string>
+            </property>
+            <property name="readOnly">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <spacer name="horizontalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="clean_pushButton">
+              <property name="text">
+               <string>清除</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="translate_button">
+              <property name="text">
+               <string>翻译</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_6">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTextBrowser" name="target_text"/>
+          </item>
+         </layout>
         </item>
-        <item>
-         <property name="text">
-          <string>English</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="native_language_comboBox">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>20</y>
-          <width>120</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>80</width>
-          <height>0</height>
-         </size>
-        </property>
-        <item>
-         <property name="text">
-          <string>English</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>中文</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QPushButton" name="swap_button">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>20</y>
-          <width>75</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>交换翻译语言</string>
-        </property>
-        <property name="statusTip">
-         <string>交换翻译语言</string>
-        </property>
-        <property name="text">
-         <string>&lt;----&gt;</string>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QTextBrowser" name="original_text">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>80</y>
-          <width>561</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>Ctrl+T可以快捷翻译</string>
-        </property>
-        <property name="statusTip">
-         <string>Ctrl+T可以快捷翻译</string>
-        </property>
-        <property name="readOnly">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QTextBrowser" name="target_text">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>330</y>
-          <width>561</width>
-          <height>192</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="translate_button">
-        <property name="geometry">
-         <rect>
-          <x>290</x>
-          <y>290</y>
-          <width>75</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>翻译</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="clean_pushButton">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>290</y>
-          <width>75</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>清除</string>
-        </property>
-       </widget>
+       </layout>
       </widget>
       <widget class="QWidget" name="setting_page">
-       <widget class="QLabel" name="api_key_label">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>20</y>
-          <width>131</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>131</width>
-          <height>21</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>openai-apikey</string>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::AutoText</enum>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="api_key_lineEdit">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>50</y>
-          <width>461</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="echoMode">
-         <enum>QLineEdit::Password</enum>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="api_key_echo_switch">
-        <property name="geometry">
-         <rect>
-          <x>490</x>
-          <y>50</y>
-          <width>41</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>echo</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="gpt_model_comboBox">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>120</y>
-          <width>501</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <item>
-         <property name="text">
-          <string>gpt-3.5-turbo</string>
-         </property>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="api_key_label">
+            <property name="minimumSize">
+             <size>
+              <width>131</width>
+              <height>21</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>openai-apikey</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLineEdit" name="api_key_lineEdit">
+              <property name="echoMode">
+               <enum>QLineEdit::Password</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="api_key_echo_switch">
+              <property name="text">
+               <string>echo</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="gpt_model_label">
+            <property name="minimumSize">
+             <size>
+              <width>130</width>
+              <height>16</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>GPT模型</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="gpt_model_comboBox">
+            <item>
+             <property name="text">
+              <string>gpt-3.5-turbo</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>gpt-4</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="api_proxy_label">
+            <property name="minimumSize">
+             <size>
+              <width>130</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>API代理地址</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="api_proxy_lineEdit">
+            <property name="minimumSize">
+             <size>
+              <width>500</width>
+              <height>22</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>35</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QDialogButtonBox" name="setting_confirm_buttonBox">
+            <property name="standardButtons">
+             <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
-        <item>
-         <property name="text">
-          <string>gpt-4</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QLabel" name="gpt_model_label">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>90</y>
-          <width>130</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>130</width>
-          <height>16</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>GPT模型</string>
-        </property>
-       </widget>
-       <widget class="QDialogButtonBox" name="setting_confirm_buttonBox">
-        <property name="geometry">
-         <rect>
-          <x>390</x>
-          <y>480</y>
-          <width>156</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="standardButtons">
-         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="api_proxy_label">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>170</y>
-          <width>130</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>130</width>
-          <height>22</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>API代理地址</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="api_proxy_lineEdit">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>210</y>
-          <width>500</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>500</width>
-          <height>22</height>
-         </size>
-        </property>
-       </widget>
+       </layout>
        <zorder>api_key_lineEdit</zorder>
        <zorder>api_key_label</zorder>
        <zorder>api_key_echo_switch</zorder>
@@ -340,6 +358,7 @@
        <zorder>setting_confirm_buttonBox</zorder>
        <zorder>api_proxy_label</zorder>
        <zorder>api_proxy_lineEdit</zorder>
+       <zorder></zorder>
       </widget>
      </widget>
     </item>
