@@ -100,15 +100,17 @@ class Translate(object):
         gpt_mode = self.setting.get_config_gpt_model()
 
         last_content = pyperclip.paste()
+        # 每秒检查一下粘贴板是否有更新
         while True:
             if last_content != pyperclip.paste():
                 translate_result = self.translate_clipboard_content(target_language, gpt_mode)
                 print(f"原文:{ pyperclip.paste() }")
                 print(f"译文:{ translate_result }\n")
+                # 把译文更新到粘贴板
                 pyperclip.copy(translate_result)
                 last_content = pyperclip.paste()
 
-            time.sleep(1) # 每秒检查一下粘贴板是否有更新           
+            time.sleep(1)            
                 
     
 def clipboard_translate():
