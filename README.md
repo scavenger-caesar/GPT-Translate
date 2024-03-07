@@ -2,7 +2,7 @@
 ## 功能
 + 支持英汉互译
 + 支持选择不同的模型进行翻译
-+ 支持设置代理pyuic6 translate.ui -o Ui_translate.py
++ 支持设置代理
 ## 安装
 clone本仓库
 ```
